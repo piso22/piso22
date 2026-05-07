@@ -5,7 +5,8 @@ const Login = ({ onLogin, onBack }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const VALID_USERNAME = "admin"; 
+  // Credentials for testing
+  const VALID_USERNAME = "admin";
   const VALID_PASSWORD = "password2026";
 
   const handleSubmit = (e) => {
@@ -19,8 +20,8 @@ const Login = ({ onLogin, onBack }) => {
 
   return (
     <div className="login-container">
-      {/* Adding the ambient glow to the login page for brand consistency */}
-      <div className="ambient-glow" style={{ opacity: 0.2, top: '40%', left: '50%' }}></div>
+      {/* Background glow for consistency */}
+      <div className="ambient-glow" style={{ opacity: 0.15 }}></div>
 
       <form onSubmit={handleSubmit} className="login-card" style={{ zIndex: 10 }}>
         <h2 className="brand-title" style={{ fontSize: '2.5rem', marginBottom: '30px' }}>
@@ -47,10 +48,11 @@ const Login = ({ onLogin, onBack }) => {
         
         {error && <p style={{ color: 'var(--accent-orange)', fontSize: '12px', marginBottom: '15px' }}>{error}</p>}
         
-        <button type="submit" className="submit-btn">ACCESS</button>
+        <button type="submit" className="submit-btn">Access</button>
         
+        {/* Back to Homepage Button */}
         <button type="button" className="back-btn" onClick={onBack}>
-          ← RETURN TO SITE
+          ← Back to Homepage
         </button>
       </form>
     </div>
