@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, onBack }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const VALID_USERNAME = "admin"; 
+  const VALID_PASSWORD = "password2026";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,37 +18,43 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <h2 style={styles.title}>Piso22 Portal</h2>
+    <div className="login-container">
+      {/* Adding the ambient glow to the login page for brand consistency */}
+      <div className="ambient-glow" style={{ opacity: 0.2, top: '40%', left: '50%' }}></div>
+
+      <form onSubmit={handleSubmit} className="login-card" style={{ zIndex: 10 }}>
+        <h2 className="brand-title" style={{ fontSize: '2.5rem', marginBottom: '30px' }}>
+          Portal<span className="accent-dot">.</span>
+        </h2>
+        
         <input 
           type="text" 
           placeholder="Username" 
+          className="login-input"
           value={username} 
           onChange={(e) => setUsername(e.target.value)} 
-          style={styles.input}
+          required
         />
+        
         <input 
           type="password" 
           placeholder="Password" 
+          className="login-input"
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
-          style={styles.input}
+          required
         />
-        {error && <p style={styles.error}>{error}</p>}
-        <button type="submit" style={styles.button}>Login</button>
+        
+        {error && <p style={{ color: 'var(--accent-orange)', fontSize: '12px', marginBottom: '15px' }}>{error}</p>}
+        
+        <button type="submit" className="submit-btn">ACCESS</button>
+        
+        <button type="button" className="back-btn" onClick={onBack}>
+          ← RETURN TO SITE
+        </button>
       </form>
     </div>
   );
-};
-
-const styles = {
-  container: { display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#ffffff' },
-  form: { display: 'flex', flexDirection: 'column', padding: '40px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', backgroundColor: '#fff', width: '300px' },
-  title: { textAlign: 'center', marginBottom: '20px', color: '#2774AE' },
-  input: { padding: '12px', marginBottom: '15px', borderRadius: '4px', border: '1px solid #ddd' },
-  button: { padding: '12px', backgroundColor: '#2774AE', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' },
-  error: { color: 'red', fontSize: '14px', marginBottom: '10px' }
 };
 
 export default Login;
